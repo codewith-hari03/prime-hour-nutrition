@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Track Order – Prime Hour Nutrition</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}body{font-family:Arial,sans-serif;background:#f0fdf4;color:#1a2e1a;overflow-x:hidden;}a{text-decoration:none;color:inherit;}ul{list-style:none;}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.97);border-bottom:2px solid #bbf7d0;box-shadow:0 2px 20px rgba(34,197,94,0.15);}
+.nav-con{max-width:1200px;margin:0 auto;padding:0 20px;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;font-size:1.2rem;font-weight:900;color:#15803d;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{padding:8px 16px;border-radius:25px;font-size:0.9rem;font-weight:700;color:#374151;transition:all 0.25s;}
+.nav-links a:hover,.nav-links a.active{background:#dcfce7;color:#15803d;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{width:24px;height:3px;background:#15803d;border-radius:4px;}
+.page-top{background:linear-gradient(135deg,#052e16 0%,#14532d 50%,#15803d 100%);padding:100px 20px 48px;text-align:center;color:#fff;}
+.page-top h1{font-size:2.2rem;font-weight:900;margin-bottom:10px;}
+.page-top p{color:rgba(255,255,255,0.7);font-size:1rem;}
+.track-wrap{max-width:700px;margin:40px auto 80px;padding:0 20px;}
+.track-search{background:#fff;border-radius:24px;padding:40px;box-shadow:0 4px 24px rgba(0,0,0,0.08);border:1px solid #e5e7eb;margin-bottom:28px;text-align:center;}
+.track-search h2{font-size:1.5rem;font-weight:900;color:#052e16;margin-bottom:8px;}
+.track-search p{color:#6b7280;margin-bottom:24px;font-size:0.93rem;}
+.search-row{display:flex;gap:12px;}
+.search-row input{flex:1;padding:14px 18px;border:2px solid #e5e7eb;border-radius:50px;font-size:1rem;outline:none;transition:all 0.2s;font-family:Arial,sans-serif;}
+.search-row input:focus{border-color:#16a34a;}
+.btn-track{background:#16a34a;color:#fff;padding:14px 28px;border-radius:50px;font-size:0.95rem;font-weight:700;cursor:pointer;border:none;transition:all 0.3s;font-family:Arial,sans-serif;white-space:nowrap;}
+.btn-track:hover{background:#15803d;transform:translateY(-2px);}
+.track-result{background:#fff;border-radius:24px;padding:40px;box-shadow:0 4px 24px rgba(0,0,0,0.08);border:1px solid #e5e7eb;display:none;}
+.track-result.show{display:block;}
+.tr-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;flex-wrap:wrap;gap:12px;}
+.tr-id{font-size:1.2rem;font-weight:900;color:#052e16;}
+.tr-plan{font-size:0.85rem;color:#6b7280;margin-top:4px;}
+.st-badge{padding:6px 16px;border-radius:50px;font-size:0.8rem;font-weight:800;}
+.st-active{background:#dcfce7;color:#15803d;}
+.today-box{background:#f0fdf4;border:2px solid #bbf7d0;border-radius:12px;padding:14px 18px;margin-bottom:24px;font-size:0.9rem;color:#052e16;}
+.tl-title{font-weight:900;color:#052e16;margin-bottom:4px;font-size:1rem;}
+.tl-sub{color:#6b7280;font-size:0.83rem;margin-bottom:20px;}
+.ts{display:flex;align-items:flex-start;gap:16px;padding:14px 0;position:relative;}
+.ts:not(:last-child)::after{content:'';position:absolute;left:19px;top:52px;width:2px;height:calc(100% - 20px);background:#e5e7eb;}
+.ts.done::after{background:#16a34a;}
+.ts-dot{width:40px;height:40px;border-radius:50%;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;border:2px solid #e5e7eb;transition:all 0.3s;}
+.ts.done .ts-dot{background:#16a34a;border-color:#16a34a;}
+.ts.curr .ts-dot{background:#f59e0b;border-color:#f59e0b;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,0.4);}50%{box-shadow:0 0 0 8px rgba(245,158,11,0);}}
+.ts-info h4{font-weight:800;color:#052e16;margin-bottom:4px;font-size:0.95rem;}
+.ts-info p{font-size:0.83rem;color:#6b7280;}
+.info-card{background:#fff;border-radius:20px;padding:28px;box-shadow:0 4px 24px rgba(0,0,0,0.08);border:1px solid #e5e7eb;margin-top:24px;}
+.info-card h3{font-size:1.1rem;font-weight:900;color:#052e16;margin-bottom:12px;}
+.info-card p{color:#6b7280;font-size:0.9rem;line-height:1.7;}
+.demo-ids{margin-top:10px;color:#6b7280;font-size:0.85rem;}
+.demo-ids strong{color:#16a34a;}
+.wa-f{position:fixed;bottom:28px;right:28px;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,0.5);z-index:999;transition:all 0.3s;}
+.wa-f:hover{transform:scale(1.1);}
+@media(max-width:768px){
+  .nav-links{position:fixed;top:68px;left:0;right:0;background:#fff;flex-direction:column;padding:16px;gap:4px;border-bottom:2px solid #bbf7d0;transform:translateY(-110%);transition:transform 0.3s;}
+  .nav-links.open{transform:translateY(0);}
+  .hamburger{display:flex;}
+  .search-row{flex-direction:column;}
+  .btn-track{width:100%;}
+  .track-search,.track-result{padding:24px;}
+}
+</style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="nav-con">
+    <a href="index.html" class="nav-logo"><span style="font-size:1.8rem">🌅</span>&nbsp;Prime Hour <span style="color:#16a34a;margin-left:4px">Nutrition</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="custommeal.html">Subscribe</a></li>
+      <li><a href="tracking.html" class="active">Track Order</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="admin.html">Admin</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="page-top">
+  <h1>📍 Track Your Order</h1>
+  <p>Enter your Customer ID to see today's delivery status</p>
+</div>
+
+<div class="track-wrap">
+  <div class="track-search">
+    <h2>Enter Your Nova ID</h2>
+    <p>Your Customer ID was given after successful payment (e.g. Nova1001)</p>
+    <div class="search-row">
+      <input type="text" id="trackInput" placeholder="Enter Customer ID (e.g. Nova1001)" onkeydown="if(event.key==='Enter')trackOrder()"/>
+      <button class="btn-track" onclick="trackOrder()">🔍 Track</button>
+    </div>
+  </div>
+
+  <div class="track-result" id="trackResult">
+    <div class="tr-head">
+      <div>
+        <div class="tr-id" id="trID"></div>
+        <div class="tr-plan" id="trPlan"></div>
+      </div>
+      <span class="st-badge st-active" id="trBadge">Active</span>
+    </div>
+    <div class="today-box">📅 <strong>Today's Status:</strong> <span id="trToday"></span></div>
+    <div class="tl-title">Delivery Timeline</div>
+    <div class="tl-sub">Today's breakfast delivery progress</div>
+    <div class="tl-steps" id="tlSteps"></div>
+  </div>
+
+  <div class="info-card">
+    <h3>ℹ️ How Tracking Works</h3>
+    <p>Enter your Nova Customer ID (given after payment) to see your breakfast delivery status. Our admin team updates the status in real time throughout the morning.</p>
+    <p class="demo-ids">Try demo IDs: <strong>Nova1001</strong> · <strong>Nova1002</strong> · <strong>Nova1003</strong></p>
+  </div>
+</div>
+
+<a href="https://wa.me/918125725380" class="wa-f" target="_blank">💬</a>
+
+<script>
+const hb=document.getElementById('hamburger'),nl=document.getElementById('navLinks');
+if(hb&&nl){hb.addEventListener('click',()=>nl.classList.toggle('open'));nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.classList.remove('open')));}
+
+const DEMOS={
+  'Nova1001':{name:'Ravi Kumar',plan:'Green Plan',area:'Anna Nagar',status:'Out for Delivery'},
+  'Nova1002':{name:'Priya R',plan:'Power Plan',area:'KK Nagar',status:'Delivered'},
+  'Nova1003':{name:'Arun M',plan:'Seed Plan',area:'Tallakulam',status:'Preparing'}
+};
+const STAGES=[
+  {ico:'✅',lbl:'Order Confirmed',desc:'Your subscription is active and confirmed'},
+  {ico:'🍳',lbl:'Meal Being Prepared',desc:'Our team is preparing your fresh breakfast box at 6 AM'},
+  {ico:'📦',lbl:'Packed & Ready',desc:'Your box is packed and sealed hygienically'},
+  {ico:'🚴',lbl:'Out for Delivery',desc:'On the way to your office gate'},
+  {ico:'🎉',lbl:'Delivered',desc:'Your breakfast has been delivered. Enjoy and stay healthy!'}
+];
+const SI={'Confirmed':0,'Preparing':1,'Packed':2,'Out for Delivery':3,'Delivered':4};
+
+function trackOrder(){
+  const inp=document.getElementById('trackInput').value.trim();
+  if(!inp){alert('Please enter your Customer ID');return;}
+  const last=JSON.parse(localStorage.getItem('phn_sub')||'{}');
+  let od=null,ci=0;
+  if(last.customerID&&last.customerID.toLowerCase()===inp.toLowerCase()){
+    od={name:last.name,plan:last.plan,area:last.area,status:last.trackStatus||'Confirmed'};
+    ci=SI[od.status]||0;
+  }else if(DEMOS[inp]){
+    od=DEMOS[inp];ci=SI[od.status]||3;
+  }else{
+    alert('Customer ID not found.\n\nDemo IDs to try: Nova1001, Nova1002, Nova1003');return;
+  }
+  document.getElementById('trID').textContent=inp+' — '+od.name;
+  document.getElementById('trPlan').textContent=od.plan+' · '+od.area;
+  document.getElementById('trToday').textContent=STAGES[ci].lbl;
+  const steps=document.getElementById('tlSteps');
+  steps.innerHTML='';
+  STAGES.forEach((s,i)=>{
+    const done=i<ci,curr=i===ci;
+    steps.innerHTML+=`<div class="ts ${done?'done':''} ${curr?'curr':''}"><div class="ts-dot">${s.ico}</div><div class="ts-info"><h4>${s.lbl}</h4><p>${s.desc}</p></div></div>`;
+  });
+  document.getElementById('trackResult').classList.add('show');
+  document.getElementById('trackResult').scrollIntoView({behavior:'smooth'});
+}
+
+// Auto-fill if coming from confirmation
+const last=JSON.parse(localStorage.getItem('phn_sub')||'{}');
+if(last.customerID) document.getElementById('trackInput').value=last.customerID;
+</script>
+</body>
+</html>

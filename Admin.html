@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Admin Panel – Prime Hour Nutrition</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}body{font-family:Arial,sans-serif;background:#f0fdf4;color:#1a2e1a;overflow-x:hidden;}a{text-decoration:none;color:inherit;}ul{list-style:none;}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.97);border-bottom:2px solid #bbf7d0;box-shadow:0 2px 20px rgba(34,197,94,0.15);}
+.nav-con{max-width:1200px;margin:0 auto;padding:0 20px;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;font-size:1.2rem;font-weight:900;color:#15803d;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{padding:8px 16px;border-radius:25px;font-size:0.9rem;font-weight:700;color:#374151;transition:all 0.25s;}
+.nav-links a:hover,.nav-links a.active{background:#dcfce7;color:#15803d;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{width:24px;height:3px;background:#15803d;border-radius:4px;}
+
+/* LOGIN */
+.login-page{min-height:100vh;padding-top:70px;background:#f0fdf4;display:flex;align-items:center;justify-content:center;padding:90px 20px 40px;}
+.login-card{background:#fff;border-radius:28px;padding:48px 40px;max-width:440px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,0.1);text-align:center;border:1px solid #e5e7eb;}
+.login-card .lock{font-size:3.5rem;margin-bottom:16px;display:block;}
+.login-card h2{font-size:1.8rem;font-weight:900;color:#052e16;margin-bottom:8px;}
+.login-card p{color:#6b7280;margin-bottom:32px;font-size:0.93rem;}
+.fg{margin-bottom:18px;text-align:left;}
+.fg label{display:block;font-weight:700;font-size:0.88rem;color:#374151;margin-bottom:7px;}
+.fg input{width:100%;padding:13px 16px;border:2px solid #e5e7eb;border-radius:10px;font-size:0.93rem;outline:none;transition:all 0.2s;font-family:Arial,sans-serif;background:#f9fafb;}
+.fg input:focus{border-color:#16a34a;background:#fff;}
+.err{color:#ef4444;font-size:0.85rem;margin-bottom:12px;display:none;}
+.btn-login{width:100%;background:#16a34a;color:#fff;padding:14px;border-radius:50px;font-size:1rem;font-weight:700;cursor:pointer;border:none;transition:all 0.3s;font-family:Arial,sans-serif;box-shadow:0 4px 16px rgba(22,163,74,0.3);}
+.btn-login:hover{background:#15803d;transform:translateY(-2px);}
+.login-note{font-size:0.78rem;color:#9ca3af;margin-top:16px;}
+
+/* ADMIN PANEL */
+.admin-panel{display:none;padding:90px 20px 40px;max-width:1200px;margin:0 auto;}
+.admin-panel.show{display:block;}
+.admin-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;flex-wrap:wrap;gap:16px;}
+.admin-head h2{font-size:1.8rem;font-weight:900;color:#052e16;}
+.admin-head p{color:#6b7280;font-size:0.9rem;margin-top:4px;}
+.btn-out{background:#f3f4f6;color:#374151;padding:10px 20px;border-radius:50px;font-size:0.88rem;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;font-family:Arial,sans-serif;}
+.btn-out:hover{background:#e5e7eb;}
+
+.stats-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:32px;}
+.stat-c{background:#fff;border-radius:16px;padding:24px;box-shadow:0 4px 20px rgba(0,0,0,0.07);border-left:4px solid #16a34a;}
+.stat-c.orange{border-left-color:#f59e0b;}
+.stat-c.blue{border-left-color:#3b82f6;}
+.stat-c.purple{border-left-color:#8b5cf6;}
+.stat-c h3{font-size:2rem;font-weight:900;color:#16a34a;}
+.stat-c.orange h3{color:#f59e0b;}
+.stat-c.blue h3{color:#3b82f6;}
+.stat-c.purple h3{color:#8b5cf6;}
+.stat-c p{color:#6b7280;font-size:0.83rem;margin-top:4px;}
+
+.table-card{background:#fff;border-radius:20px;padding:28px;box-shadow:0 4px 20px rgba(0,0,0,0.07);border:1px solid #e5e7eb;overflow-x:auto;margin-bottom:24px;}
+.table-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px;}
+.table-head h3{font-size:1.1rem;font-weight:900;color:#052e16;}
+.search-in{padding:9px 16px;border:2px solid #e5e7eb;border-radius:50px;font-size:0.88rem;outline:none;font-family:Arial,sans-serif;width:220px;transition:all 0.2s;}
+.search-in:focus{border-color:#16a34a;}
+table{width:100%;border-collapse:collapse;font-size:0.86rem;min-width:700px;}
+th{background:#f0fdf4;color:#15803d;font-weight:800;padding:12px 14px;text-align:left;font-size:0.8rem;letter-spacing:0.3px;}
+td{padding:12px 14px;border-bottom:1px solid #f3f4f6;color:#374151;vertical-align:middle;}
+tr:hover td{background:#fafafa;}
+.badge{padding:4px 12px;border-radius:50px;font-size:0.73rem;font-weight:800;}
+.b-active{background:#dcfce7;color:#15803d;}
+.b-prep{background:#fef3c7;color:#92400e;}
+.b-del{background:#dbeafe;color:#1d4ed8;}
+.b-out{background:#ede9fe;color:#7c3aed;}
+.b-conf{background:#f3f4f6;color:#374151;}
+.status-sel{padding:5px 10px;border:1.5px solid #e5e7eb;border-radius:6px;font-size:0.8rem;cursor:pointer;font-family:Arial,sans-serif;outline:none;}
+.status-sel:focus{border-color:#16a34a;}
+
+.wa-f{position:fixed;bottom:28px;right:28px;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,0.5);z-index:999;transition:all 0.3s;}
+.wa-f:hover{transform:scale(1.1);}
+@media(max-width:768px){
+  .nav-links{position:fixed;top:68px;left:0;right:0;background:#fff;flex-direction:column;padding:16px;gap:4px;border-bottom:2px solid #bbf7d0;transform:translateY(-110%);transition:transform 0.3s;}
+  .nav-links.open{transform:translateY(0);}
+  .hamburger{display:flex;}
+  .login-card{padding:32px 20px;}
+  .admin-panel{padding:80px 16px 40px;}
+  .table-card{padding:16px;}
+}
+</style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="nav-con">
+    <a href="index.html" class="nav-logo"><span style="font-size:1.8rem">🌅</span>&nbsp;Prime Hour <span style="color:#16a34a;margin-left:4px">Nutrition</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="custommeal.html">Subscribe</a></li>
+      <li><a href="tracking.html">Track Order</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="admin.html" class="active">Admin</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- LOGIN -->
+<div class="login-page" id="loginPage">
+  <div class="login-card">
+    <span class="lock">🔐</span>
+    <h2>Admin Login</h2>
+    <p>Prime Hour Nutrition — Admin Panel</p>
+    <div class="fg"><label>Username</label><input type="text" id="aUser" placeholder="Enter username"/></div>
+    <div class="fg"><label>Password</label><input type="password" id="aPass" placeholder="Enter password"/></div>
+    <div class="err" id="loginErr">❌ Invalid username or password</div>
+    <button class="btn-login" onclick="doLogin()">🔑 Login to Admin Panel</button>
+    <p class="login-note">Admin access only. Unauthorized access is prohibited.</p>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-panel" id="adminPanel">
+  <div class="admin-head">
+    <div>
+      <h2>Welcome, Hari Brahma Reddy 👋</h2>
+      <p>Prime Hour Nutrition — Admin Dashboard</p>
+    </div>
+    <button class="btn-out" onclick="doLogout()">🚪 Logout</button>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-g">
+    <div class="stat-c"><h3 id="stTotal">5</h3><p>Total Subscribers</p></div>
+    <div class="stat-c orange"><h3 id="stActive">3</h3><p>Active Deliveries Today</p></div>
+    <div class="stat-c blue"><h3 id="stDel">1</h3><p>Delivered Today</p></div>
+    <div class="stat-c purple"><h3 id="stRev">₹13,595</h3><p>Monthly Revenue</p></div>
+  </div>
+
+  <!-- REAL SUBSCRIBER -->
+  <div class="table-card">
+    <div class="table-head">
+      <h3>📋 New Subscribers (From Website)</h3>
+      <input class="search-in" type="text" placeholder="Search..." oninput="filterReal(this.value)"/>
+    </div>
+    <table>
+      <thead><tr><th>Customer ID</th><th>Name</th><th>Phone</th><th>Plan</th><th>Health Condition</th><th>Area</th><th>Shift</th><th>Date</th><th>Status</th></tr></thead>
+      <tbody id="realBody"></tbody>
+    </table>
+  </div>
+
+  <!-- DEMO SUBSCRIBERS -->
+  <div class="table-card">
+    <div class="table-head">
+      <h3>📊 Demo Subscriber Data</h3>
+    </div>
+    <table>
+      <thead><tr><th>Customer ID</th><th>Name</th><th>Plan</th><th>Health</th><th>Area</th><th>Suggested Items</th><th>Status</th><th>Update Status</th></tr></thead>
+      <tbody id="demoBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<a href="https://wa.me/918125725380" class="wa-f" target="_blank">💬</a>
+
+<script>
+const hb=document.getElementById('hamburger'),nl=document.getElementById('navLinks');
+if(hb&&nl){hb.addEventListener('click',()=>nl.classList.toggle('open'));nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.classList.remove('open')));}
+
+const AU='Hari Brahma Reddy',AP='PHN2026';
+const DEMOS=[
+  {id:'Nova1001',name:'Ravi Kumar',plan:'Green Plan ₹2,299',health:'Diabetes / Sugar',area:'Anna Nagar',items:'Oats, Sprouts, Ragi Dosa, Eggs',status:'Out for Delivery',price:2299},
+  {id:'Nova1002',name:'Priya R',plan:'Power Plan ₹2,799',health:'Stress / Anxiety',area:'KK Nagar',items:'Oats, Sprouts, Eggs, Chikki, Laddu',status:'Delivered',price:2799},
+  {id:'Nova1003',name:'Arun M',plan:'Seed Plan ₹1,799',health:'Fully Healthy',area:'Tallakulam',items:'Oats, Sprouts, Eggs',status:'Preparing',price:1799},
+  {id:'Nova1004',name:'Deepa K',plan:'Nova Elite ₹4,499',health:'Blood Pressure',area:'Bypass Road',items:'Oats, Sprouts, Ragi, Eggs, Bar, Cucumber, Guava',status:'Packed',price:4499},
+  {id:'Nova1005',name:'Manoj T',plan:'Green Plan ₹2,299',health:'Obesity',area:'Anna Nagar',items:'Oats, Sprouts, Ragi, Eggs',status:'Out for Delivery',price:2299},
+];
+
+function getBadge(s){
+  const m={'Active':'b-active','Confirmed':'b-conf','Preparing':'b-prep','Packed':'b-prep','Out for Delivery':'b-out','Delivered':'b-del'};
+  return`<span class="badge ${m[s]||'b-conf'}">${s}</span>`;
+}
+
+function doLogin(){
+  const u=document.getElementById('aUser').value.trim(),p=document.getElementById('aPass').value.trim();
+  if(u===AU&&p===AP){
+    document.getElementById('loginPage').style.display='none';
+    document.getElementById('adminPanel').classList.add('show');
+    sessionStorage.setItem('phn_admin','1');
+    loadData();
+  }else{
+    document.getElementById('loginErr').style.display='block';
+  }
+}
+
+function doLogout(){
+  sessionStorage.removeItem('phn_admin');
+  document.getElementById('loginPage').style.display='flex';
+  document.getElementById('adminPanel').classList.remove('show');
+  document.getElementById('aUser').value='';
+  document.getElementById('aPass').value='';
+  document.getElementById('loginErr').style.display='none';
+}
+
+function loadData(){
+  // Load real subscriber from localStorage
+  const last=JSON.parse(localStorage.getItem('phn_sub')||'{}');
+  const rb=document.getElementById('realBody');
+  if(last.customerID){
+    rb.innerHTML=`<tr><td><strong>${last.customerID}</strong></td><td>${last.name}</td><td>${last.phone}</td><td>${last.plan}</td><td>${last.healthCondition||'—'}</td><td>${last.area}</td><td>${last.shift}</td><td>${last.date}</td><td>${getBadge('Active')}</td></tr>`;
+  }else{
+    rb.innerHTML='<tr><td colspan="9" style="text-align:center;color:#9ca3af;padding:32px">No subscribers yet from website. Data will appear here after payment.</td></tr>';
+  }
+
+  // Load demo data
+  const db=document.getElementById('demoBody');
+  let totalRev=0,delCnt=0,actCnt=0;
+  db.innerHTML='';
+  DEMOS.forEach(s=>{
+    totalRev+=s.price;
+    if(s.status==='Delivered')delCnt++;
+    else actCnt++;
+    db.innerHTML+=`<tr id="row_${s.id}"><td><strong>${s.id}</strong></td><td>${s.name}</td><td>${s.plan}</td><td>${s.health}</td><td>${s.area}</td><td style="font-size:0.8rem">${s.items}</td><td>${getBadge(s.status)}</td><td><select class="status-sel" onchange="updateStatus('${s.id}',this.value)"><option ${s.status==='Confirmed'?'selected':''}>Confirmed</option><option ${s.status==='Preparing'?'selected':''}>Preparing</option><option ${s.status==='Packed'?'selected':''}>Packed</option><option ${s.status==='Out for Delivery'?'selected':''}>Out for Delivery</option><option ${s.status==='Delivered'?'selected':''}>Delivered</option></select></td></tr>`;
+  });
+
+  // Add real subscriber revenue
+  if(last.customerID) totalRev+=parseInt(last.planPrice||0);
+  const realCnt=last.customerID?1:0;
+
+  document.getElementById('stTotal').textContent=DEMOS.length+realCnt;
+  document.getElementById('stActive').textContent=actCnt+realCnt;
+  document.getElementById('stDel').textContent=delCnt;
+  document.getElementById('stRev').textContent='₹'+totalRev.toLocaleString('en-IN');
+}
+
+function updateStatus(id,newStatus){
+  const demo=DEMOS.find(d=>d.id===id);
+  if(demo){
+    demo.status=newStatus;
+    // Update cell
+    const row=document.getElementById('row_'+id);
+    if(row){const cells=row.cells;cells[6].innerHTML=getBadge(newStatus);}
+    // Update real subscriber tracking too
+    const last=JSON.parse(localStorage.getItem('phn_sub')||'{}');
+    if(last.customerID===id){last.trackStatus=newStatus;localStorage.setItem('phn_sub',JSON.stringify(last));}
+    alert('✅ Status updated for '+id+': '+newStatus);
+  }
+}
+
+function filterReal(q){
+  const rb=document.getElementById('realBody');
+  Array.from(rb.rows).forEach(r=>{r.style.display=r.textContent.toLowerCase().includes(q.toLowerCase())?'':'none';});
+}
+
+// Auto-login
+if(sessionStorage.getItem('phn_admin')==='1'){
+  document.getElementById('loginPage').style.display='none';
+  document.getElementById('adminPanel').classList.add('show');
+  loadData();
+}
+
+// Enter key
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.getElementById('loginPage').style.display!=='none')doLogin();});
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Reviews – Prime Hour Nutrition</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}body{font-family:Arial,sans-serif;background:#f0fdf4;color:#1a2e1a;overflow-x:hidden;}a{text-decoration:none;color:inherit;}ul{list-style:none;}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.97);border-bottom:2px solid #bbf7d0;box-shadow:0 2px 20px rgba(34,197,94,0.15);}
+.nav-con{max-width:1200px;margin:0 auto;padding:0 20px;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;font-size:1.2rem;font-weight:900;color:#15803d;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{padding:8px 16px;border-radius:25px;font-size:0.9rem;font-weight:700;color:#374151;transition:all 0.25s;}
+.nav-links a:hover,.nav-links a.active{background:#dcfce7;color:#15803d;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{width:24px;height:3px;background:#15803d;border-radius:4px;}
+.page-top{background:linear-gradient(135deg,#052e16 0%,#14532d 50%,#15803d 100%);padding:100px 20px 48px;text-align:center;color:#fff;}
+.page-top h1{font-size:2.2rem;font-weight:900;margin-bottom:10px;}
+.page-top p{color:rgba(255,255,255,0.7);font-size:1rem;}
+.wrap{max-width:960px;margin:40px auto 80px;padding:0 20px;}
+.stats-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;margin-bottom:40px;}
+.stat-card{background:#fff;border-radius:20px;padding:24px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.07);border:2px solid #bbf7d0;}
+.stat-card .sn{font-size:2.2rem;font-weight:900;color:#16a34a;}
+.stat-card .sl{font-size:0.82rem;color:#6b7280;margin-top:4px;}
+.sec-title{font-size:1.5rem;font-weight:900;color:#052e16;margin-bottom:24px;}
+.reviews-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-bottom:48px;}
+.rev-card{background:#fff;border-radius:20px;padding:28px;box-shadow:0 4px 20px rgba(0,0,0,0.07);border:1px solid #e5e7eb;transition:all 0.3s;}
+.rev-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(22,163,74,0.15);border-color:#bbf7d0;}
+.stars{color:#f59e0b;font-size:1.1rem;margin-bottom:12px;}
+.rev-text{color:#374151;font-size:0.91rem;line-height:1.7;margin-bottom:16px;font-style:italic;}
+.rev-auth{display:flex;align-items:center;gap:12px;}
+.rev-av{width:40px;height:40px;border-radius:50%;background:#dcfce7;display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+.rev-name{font-weight:800;font-size:0.9rem;color:#052e16;}
+.rev-role{font-size:0.78rem;color:#6b7280;}
+.form-card{background:#fff;border-radius:24px;padding:40px;box-shadow:0 4px 24px rgba(0,0,0,0.08);border:1px solid #e5e7eb;}
+.form-card h2{font-size:1.4rem;font-weight:900;color:#052e16;margin-bottom:8px;}
+.form-card .sub{color:#6b7280;font-size:0.9rem;margin-bottom:24px;}
+.tab-row{display:flex;gap:12px;margin-bottom:28px;}
+.tab-btn{flex:1;padding:12px;border-radius:50px;font-size:0.9rem;font-weight:700;cursor:pointer;border:2px solid #e5e7eb;transition:all 0.3s;font-family:Arial,sans-serif;background:#f9fafb;color:#374151;}
+.tab-btn.active{background:#16a34a;color:#fff;border-color:#16a34a;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.fg{margin-bottom:18px;}
+.fg label{display:block;font-weight:700;font-size:0.88rem;color:#374151;margin-bottom:7px;}
+.fg input,.fg select,.fg textarea{width:100%;padding:13px 16px;border:2px solid #e5e7eb;border-radius:10px;font-size:0.93rem;color:#1a2e1a;background:#f9fafb;outline:none;transition:all 0.2s;font-family:Arial,sans-serif;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:#16a34a;background:#fff;}
+.stars-sel{display:flex;gap:10px;margin-bottom:20px;}
+.stars-sel span{font-size:2rem;cursor:pointer;color:#e5e7eb;transition:color 0.2s;}
+.stars-sel span.active{color:#f59e0b;}
+.btn-sub{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#16a34a;color:#fff;padding:14px 28px;border-radius:50px;font-size:0.95rem;font-weight:700;cursor:pointer;border:none;transition:all 0.3s;width:100%;box-shadow:0 4px 16px rgba(22,163,74,0.3);font-family:Arial,sans-serif;}
+.btn-sub:hover{background:#15803d;transform:translateY(-2px);}
+.wa-f{position:fixed;bottom:28px;right:28px;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,0.5);z-index:999;transition:all 0.3s;}
+.wa-f:hover{transform:scale(1.1);}
+@media(max-width:768px){
+  .nav-links{position:fixed;top:68px;left:0;right:0;background:#fff;flex-direction:column;padding:16px;gap:4px;border-bottom:2px solid #bbf7d0;transform:translateY(-110%);transition:transform 0.3s;}
+  .nav-links.open{transform:translateY(0);}
+  .hamburger{display:flex;}
+  .form-row{grid-template-columns:1fr;}
+  .form-card{padding:24px;}
+}
+</style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="nav-con">
+    <a href="index.html" class="nav-logo"><span style="font-size:1.8rem">🌅</span>&nbsp;Prime Hour <span style="color:#16a34a;margin-left:4px">Nutrition</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="custommeal.html">Subscribe</a></li>
+      <li><a href="tracking.html">Track Order</a></li>
+      <li><a href="reviews.html" class="active">Reviews</a></li>
+      <li><a href="admin.html">Admin</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="page-top">
+  <h1>⭐ Customer Reviews</h1>
+  <p>See what our subscribers say about Prime Hour Nutrition</p>
+</div>
+
+<div class="wrap">
+  <!-- STATS -->
+  <div class="stats-g">
+    <div class="stat-card"><div class="sn">4.8 ⭐</div><div class="sl">Average Rating</div></div>
+    <div class="stat-card"><div class="sn">100+</div><div class="sl">Happy Subscribers</div></div>
+    <div class="stat-card"><div class="sn">99%</div><div class="sl">On-Time Delivery</div></div>
+    <div class="stat-card"><div class="sn">26</div><div class="sl">Days/Month Delivery</div></div>
+  </div>
+
+  <!-- FORM CARD -->
+  <div class="form-card">
+    <h2>Share Your Experience or Contact Us</h2>
+    <p class="sub">Have feedback or a problem? We'd love to hear from you.</p>
+    <div class="tab-row">
+      <button class="tab-btn active" id="tabR" onclick="switchTab('review')">⭐ Write a Review</button>
+      <button class="tab-btn" id="tabC" onclick="switchTab('contact')">📧 Contact Us</button>
+    </div>
+
+    <!-- REVIEW FORM -->
+    <form id="reviewForm" onsubmit="subReview(event)">
+      <div class="form-row">
+        <div class="fg"><label>Your Name *</label><input type="text" name="rname" placeholder="Full name" required/></div>
+        <div class="fg"><label>Occupation</label><input type="text" name="occupation" placeholder="e.g. BPO Executive"/></div>
+      </div>
+      <div class="fg"><label>Your Rating *</label><div class="stars-sel" id="starsSel"><span onclick="setStar(1)">★</span><span onclick="setStar(2)">★</span><span onclick="setStar(3)">★</span><span onclick="setStar(4)">★</span><span onclick="setStar(5)">★</span></div></div>
+      <div class="fg"><label>Your Review *</label><textarea name="review" rows="4" placeholder="Share your experience with Prime Hour Nutrition..." required></textarea></div>
+      <button type="submit" class="btn-sub">📨 Submit Review</button>
+    </form>
+
+    <!-- CONTACT FORM -->
+    <form id="contactForm" style="display:none" onsubmit="subContact(event)">
+      <div class="form-row">
+        <div class="fg"><label>Your Name *</label><input type="text" name="name" placeholder="Full name" required/></div>
+        <div class="fg"><label>Phone Number</label><input type="tel" name="phone" placeholder="10-digit number"/></div>
+      </div>
+      <div class="fg"><label>Email Address *</label><input type="email" name="email" placeholder="your@email.com" required/></div>
+      <div class="fg"><label>Your Message *</label><textarea name="message" rows="4" placeholder="Describe your issue or question..." required></textarea></div>
+      <button type="submit" class="btn-sub">📨 Send Message</button>
+    </form>
+  </div>
+</div>
+
+<a href="https://wa.me/918125725380" class="wa-f" target="_blank">💬</a>
+
+<script>
+const hb=document.getElementById('hamburger'),nl=document.getElementById('navLinks');
+if(hb&&nl){hb.addEventListener('click',()=>nl.classList.toggle('open'));nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.classList.remove('open')));}
+
+let selRating=0;
+function setStar(n){selRating=n;document.querySelectorAll('#starsSel span').forEach((s,i)=>s.classList.toggle('active',i<n));}
+function switchTab(t){
+  const rf=document.getElementById('reviewForm'),cf=document.getElementById('contactForm');
+  const tr=document.getElementById('tabR'),tc=document.getElementById('tabC');
+  if(t==='review'){rf.style.display='block';cf.style.display='none';tr.classList.add('active');tc.classList.remove('active');}
+  else{rf.style.display='none';cf.style.display='block';tc.classList.add('active');tr.classList.remove('active');}
+}
+async function sendSheet(data){try{await fetch('https://script.google.com/macros/s/AKfycbxNOYKfhBOv4nLrB0wB9RYTbBKUIZiyF1-HBy7UpjHPT1SQkbNdJGZZCLlRNcivqqS2/exec',{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});}catch(e){}}
+async function subReview(e){
+  e.preventDefault();
+  if(!selRating){alert('Please select a rating!');return;}
+  const btn=e.target.querySelector('button[type="submit"]');
+  btn.textContent='Submitting...';btn.disabled=true;
+  const fd=new FormData(e.target);
+  await sendSheet({type:'review',name:fd.get('rname'),occupation:fd.get('occupation'),rating:selRating,review:fd.get('review'),date:new Date().toLocaleString('en-IN')});
+  btn.textContent='Review Submitted! ✅';
+  setTimeout(()=>{btn.textContent='📨 Submit Review';btn.disabled=false;e.target.reset();selRating=0;document.querySelectorAll('#starsSel span').forEach(s=>s.classList.remove('active'));},3000);
+}
+async function subContact(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('button[type="submit"]');
+  btn.textContent='Sending...';btn.disabled=true;
+  const fd=new FormData(e.target);
+  await sendSheet({type:'contact',name:fd.get('name'),phone:fd.get('phone'),email:fd.get('email'),message:fd.get('message'),date:new Date().toLocaleString('en-IN')});
+  btn.textContent='Message Sent! ✅';
+  setTimeout(()=>{btn.textContent='📨 Send Message';btn.disabled=false;e.target.reset();},3000);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Payment Confirmed – Prime Hour Nutrition</title>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}body{font-family:Arial,sans-serif;background:#f0fdf4;color:#1a2e1a;overflow-x:hidden;}a{text-decoration:none;color:inherit;}ul{list-style:none;}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.97);border-bottom:2px solid #bbf7d0;box-shadow:0 2px 20px rgba(34,197,94,0.15);}
+.nav-con{max-width:1200px;margin:0 auto;padding:0 20px;height:68px;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{display:flex;align-items:center;gap:10px;font-size:1.2rem;font-weight:900;color:#15803d;}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-links a{padding:8px 16px;border-radius:25px;font-size:0.9rem;font-weight:700;color:#374151;transition:all 0.25s;}
+.nav-links a:hover,.nav-links a.active{background:#dcfce7;color:#15803d;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{width:24px;height:3px;background:#15803d;border-radius:4px;}
+.page{min-height:100vh;padding-top:70px;background:#f0fdf4;display:flex;align-items:center;justify-content:center;padding:90px 20px 40px;}
+.card{background:#fff;border-radius:28px;padding:48px 40px;text-align:center;max-width:540px;width:100%;box-shadow:0 8px 40px rgba(0,0,0,0.1);border:1px solid #e5e7eb;}
+.big-icon{font-size:4.5rem;margin-bottom:16px;display:block;animation:pop 0.5s ease;}
+@keyframes pop{0%{transform:scale(0);}80%{transform:scale(1.2);}100%{transform:scale(1);}}
+.card h2{font-size:2rem;font-weight:900;color:#16a34a;margin-bottom:8px;}
+.card>p{color:#6b7280;margin-bottom:28px;font-size:0.95rem;}
+.id-box{background:#f0fdf4;border:3px solid #16a34a;border-radius:16px;padding:20px;margin-bottom:24px;}
+.id-lbl{font-size:0.82rem;color:#6b7280;font-weight:700;margin-bottom:6px;}
+.id-val{font-size:2.6rem;font-weight:900;color:#16a34a;letter-spacing:2px;}
+.details{text-align:left;background:#f9fafb;border-radius:12px;padding:20px;margin-bottom:24px;}
+.dr{display:flex;justify-content:space-between;padding:9px 0;font-size:0.9rem;border-bottom:1px solid #e5e7eb;}
+.dr:last-child{border:none;}
+.dl{color:#6b7280;font-weight:600;}.dv{font-weight:700;color:#052e16;}
+.delivery-box{background:linear-gradient(135deg,#16a34a,#15803d);color:#fff;border-radius:14px;padding:18px;margin-bottom:24px;}
+.delivery-box h3{font-size:1.1rem;font-weight:900;margin-bottom:4px;}
+.delivery-box p{font-size:0.88rem;opacity:0.85;}
+.note{font-size:0.82rem;color:#6b7280;margin-bottom:24px;}
+.btns{display:flex;flex-direction:column;gap:12px;}
+.btn-g{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#16a34a;color:#fff;padding:14px 28px;border-radius:50px;font-size:0.95rem;font-weight:700;transition:all 0.3s;box-shadow:0 4px 16px rgba(22,163,74,0.3);}
+.btn-g:hover{background:#15803d;transform:translateY(-2px);}
+.btn-og{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:#16a34a;padding:14px 28px;border-radius:50px;font-size:0.95rem;font-weight:700;transition:all 0.3s;border:2px solid #16a34a;}
+.btn-og:hover{background:#16a34a;color:#fff;}
+.wa-f{position:fixed;bottom:28px;right:28px;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,0.5);z-index:999;transition:all 0.3s;}
+.wa-f:hover{transform:scale(1.1);}
+@media(max-width:768px){
+  .nav-links{position:fixed;top:68px;left:0;right:0;background:#fff;flex-direction:column;padding:16px;gap:4px;border-bottom:2px solid #bbf7d0;transform:translateY(-110%);transition:transform 0.3s;}
+  .nav-links.open{transform:translateY(0);}
+  .hamburger{display:flex;}
+  .card{padding:32px 20px;}
+  .id-val{font-size:2rem;}
+}
+</style>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="nav-con">
+    <a href="index.html" class="nav-logo"><span style="font-size:1.8rem">🌅</span>&nbsp;Prime Hour <span style="color:#16a34a;margin-left:4px">Nutrition</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="custommeal.html">Subscribe</a></li>
+      <li><a href="tracking.html">Track Order</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="admin.html">Admin</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="card">
+    <span class="big-icon">🎉</span>
+    <h2>Payment Successful!</h2>
+    <p>Welcome to Prime Hour Nutrition! You are now subscribed.</p>
+    <div class="id-box">
+      <div class="id-lbl">Your Customer ID</div>
+      <div class="id-val" id="confID">Nova---</div>
+    </div>
+    <div class="details">
+      <div class="dr"><span class="dl">Plan</span><span class="dv" id="confPlan">—</span></div>
+      <div class="dr"><span class="dl">Health Condition</span><span class="dv" id="confHealth">—</span></div>
+      <div class="dr"><span class="dl">Suggested Items</span><span class="dv" id="confItems" style="font-size:0.82rem">—</span></div>
+      <div class="dr"><span class="dl">Delivery Area</span><span class="dv" id="confArea">—</span></div>
+      <div class="dr"><span class="dl">Shift Timing</span><span class="dv" id="confShift">—</span></div>
+      <div class="dr"><span class="dl">Payment ID</span><span class="dv" id="confPay" style="font-size:0.8rem">—</span></div>
+      <div class="dr"><span class="dl">Amount Paid</span><span class="dv" style="color:#16a34a">₹1 (Demo)</span></div>
+    </div>
+    <div class="delivery-box">
+      <h3>🌅 Delivery Starts Tomorrow!</h3>
+      <p>Your fresh breakfast box will arrive at your office gate every Mon–Sat</p>
+    </div>
+    <p class="note">Save your Customer ID <strong id="confID2">Nova---</strong> to track your orders anytime.</p>
+    <div class="btns">
+      <a href="tracking.html" class="btn-g">📍 Track My Order</a>
+      <a href="index.html" class="btn-og">🏠 Back to Home</a>
+    </div>
+  </div>
+</div>
+
+<a href="https://wa.me/918125725380" class="wa-f" target="_blank">💬</a>
+
+<script>
+const hb=document.getElementById('hamburger'),nl=document.getElementById('navLinks');
+if(hb&&nl){hb.addEventListener('click',()=>nl.classList.toggle('open'));nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.classList.remove('open')));}
+
+const data=JSON.parse(localStorage.getItem('phn_sub')||'{}');
+if(data.customerID){
+  document.getElementById('confID').textContent=data.customerID;
+  document.getElementById('confID2').textContent=data.customerID;
+  document.getElementById('confPlan').textContent=data.plan||'—';
+  document.getElementById('confHealth').textContent=data.healthCondition||'—';
+  document.getElementById('confItems').textContent=data.suggestedItems||'—';
+  document.getElementById('confArea').textContent=data.area||'—';
+  document.getElementById('confShift').textContent=data.shift||'—';
+  document.getElementById('confPay').textContent=data.paymentID||'—';
+}else{
+  setTimeout(()=>window.location.href='index.html',3000);
+}
+</script>
+</body>
+</html>
